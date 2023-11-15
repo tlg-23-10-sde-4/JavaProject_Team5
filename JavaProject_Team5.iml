@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/json-20231013.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/json-20231013.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -22,7 +22,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/jar_files/commons-lang3-3.13.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-lang3-3.13.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -31,7 +31,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/jar_files/commons-text-1.11.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/commons-text-1.11.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
