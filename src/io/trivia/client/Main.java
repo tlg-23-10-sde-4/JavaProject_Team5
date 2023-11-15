@@ -1,5 +1,13 @@
 package io.trivia.client;
 
-class Main {
+import io.trivia.GameQuestion;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+
+class Main{
+    public static void main(String[] args) {
+
+    }
 }
