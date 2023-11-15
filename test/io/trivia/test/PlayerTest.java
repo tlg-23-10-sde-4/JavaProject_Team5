@@ -2,14 +2,13 @@ package io.trivia.test;
 
 import io.trivia.Player;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-class PlayerTest {
+public class PlayerTest extends IllegalArgumentException{
     private Player player;
-    
+
     @Before
     public void setUp() throws Exception {
         player = new Player("TestPlayer", 0);
