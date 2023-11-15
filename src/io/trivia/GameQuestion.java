@@ -15,7 +15,7 @@ public class GameQuestion {
     public static void getJson() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category=entertainment&type=boolean&difficulty=easy&limit=1")).build();
+                .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category=&type=boolean&difficulty=easy&limit=1")).build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .thenAccept(GameQuestion::parse)
@@ -33,7 +33,7 @@ public class GameQuestion {
             String pureQuestion = StringEscapeUtils.unescapeHtml3(question);
             res.add(pureQuestion);
             res.add(correctAnswer);
-            System.out.println(res);
+            System.out.println(res); // this line for testing purposes
         }
         return res;
     }
