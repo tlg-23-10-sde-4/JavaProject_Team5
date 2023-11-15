@@ -1,5 +1,6 @@
 package io.trivia;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -29,7 +30,8 @@ public class GameQuestion {
             JSONObject result = arr.getJSONObject(i);
             String question = result.getString("question");
             String correctAnswer = result.getString("correct_answer");
-            res.add(question);
+            String pureQuestion = StringEscapeUtils.unescapeHtml3(question);
+            res.add(pureQuestion);
             res.add(correctAnswer);
             System.out.println(res);
         }
