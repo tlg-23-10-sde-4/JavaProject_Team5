@@ -1,5 +1,18 @@
 package io.trivia.client;
 
-class Main {
+import io.trivia.app.GameApp;
+
+public class Main {
+	public static void main(String[] args) {
+
+		GameApp game = new GameApp(){};
+
+
+
+
+	}
+
+
+
 
 }
