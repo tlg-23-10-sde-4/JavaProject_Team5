@@ -1,12 +1,22 @@
 package io.trivia;
 
-class Player {
+public class Player {
     private String name;
     private int score;
+
+
+    public Player(String name) {
+        this.name = name;
+    }
 
     public Player(String name, int score) {
         this.name = name;
         this.score = score;
+    }
+
+    // can have this instead of a setter for score
+    public void incrementScore(int points) {
+        this.score += points;
     }
 
     public String getName() {
@@ -17,19 +27,16 @@ class Player {
         this.name = name;
     }
 
-    // TODO: Do we need this?
+    // Do we need this?
     public int getScore() {
         return score;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
+    // Are we making a derived property method?
 
-    // TODO: Are we making a derived property method?
-
-    //
+    // Initial toString if needed
+    @Override
     public String toString() {
-        return "null";
+        return "Player: " + name + ", Score= " + score;
     }
 }
