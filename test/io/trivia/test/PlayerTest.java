@@ -6,9 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PlayerTest extends IllegalArgumentException{
+public class PlayerTest extends IllegalArgumentException {
     private Player player;
-
+    
     @Before
     public void setUp() throws Exception {
         player = new Player("TestPlayer", 0);
