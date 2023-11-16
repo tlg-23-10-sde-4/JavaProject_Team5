@@ -1,8 +1,11 @@
 package io.trivia.client;
 
 import io.trivia.app.GameHost;
+
+
 import io.trivia.GameArt;
 import static java.lang.Runnable.*;
+
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
@@ -13,6 +16,7 @@ public class Main {
 		thread.gameName();
 
 
+		GameHost game = new GameHost();
 
 	}
 }
