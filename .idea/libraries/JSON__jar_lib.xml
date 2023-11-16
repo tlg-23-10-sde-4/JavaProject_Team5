@@ -1,9 +1,9 @@
 <component name="libraryTable">
-  <library name="json-20231013">
+  <library name="JSON__jar.lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/json-20231013.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/commons-text-1.11.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/commons-lang3-3.13.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-text-1.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-20231013.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
