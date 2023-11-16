@@ -14,7 +14,6 @@ import java.util.Collection;
 public class QuestionService {
 
     public static String getJson(Category category) {
-        String result;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category="

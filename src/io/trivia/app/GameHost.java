@@ -15,17 +15,6 @@ public class GameHost {
 		return name;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 //	Prompter prompter = new Prompter(new Scanner(System.in));
 //
 //	// place into methods
