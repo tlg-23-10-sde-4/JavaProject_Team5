@@ -13,8 +13,6 @@ import static io.trivia.Category.*;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
-		GameHost a = new GameHost();
-		a.welcomePrompt();
 
 
 //		GameHost gameHost = new GameHost();

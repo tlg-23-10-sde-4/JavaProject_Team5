@@ -20,9 +20,6 @@ public class QuestionService {
                         + category + "&type=boolean&difficulty=easy&limit=1")).build();
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                //.thenAccept(QuestionService::assign)
-                //.thenApply(QuestionService::parse)
-                //.thenAccept(System.out::println)
                 .join();
     }
 
@@ -41,8 +38,12 @@ public class QuestionService {
             res.add(pureQuestion);
             res.add(correctAnswer);
             res.add(id);
-            System.out.println(res); // this line for testing purposes
+            //System.out.println(res); // this line for testing purposes
         }
         return res;
+    }
+
+    public static ArrayList<String> newQuestion(Category category) {
+        return QuestionService.parse(QuestionService.getJson(category));
     }
 }
