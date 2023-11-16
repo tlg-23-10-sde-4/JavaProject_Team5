@@ -10,6 +10,7 @@ public class GameQuestionTest {
     @Test
     public void getJsonShould_returnArrayList_whenCalled() {
         ArrayList<String> a = new ArrayList<>();
-        a = QuestionService.parse(QuestionService.getJson(Category.ANIMALS));
+        a = QuestionService.newQuestion(Category.ANIMALS);
+        System.out.println(a);
     }
 }

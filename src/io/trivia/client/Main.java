@@ -16,6 +16,7 @@ public class Main {
 	public static void main(String[] args) throws InterruptedException {
 
 
+
 		GameArt art = new GameArt();
 		art.loadTitle();
 		art.run();
