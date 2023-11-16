@@ -8,11 +8,10 @@ import java.util.Scanner;
 
 public class GameHost {
 
-	public String welcomePrompt () {
+	public void welcomePrompt () {
 		Prompter prompter = new Prompter(new Scanner(System.in));
 		String name = prompter.prompt("Please enter your name: ");
 		System.out.println("The game categories are: " );
-		return name;
 	}
 
 
