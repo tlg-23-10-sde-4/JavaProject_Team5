@@ -1,11 +1,11 @@
 package io.trivia.client;
 
-import io.trivia.app.GameApp;
+import io.trivia.app.GameHost;
 
 public class Main {
 	public static void main(String[] args) {
 
-		GameApp game = new GameApp();
+		GameHost game = new GameHost();
 
 	}
 }

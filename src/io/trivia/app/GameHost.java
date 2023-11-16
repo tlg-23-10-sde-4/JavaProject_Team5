@@ -4,7 +4,7 @@ import com.apps.util.Prompter; // Jays Prompter Class
 
 import java.util.Scanner;
 
-public class GameApp {
+public class GameHost {
 	Prompter prompter = new Prompter(new Scanner(System.in));
 
 	// place into methods
@@ -20,7 +20,7 @@ public class GameApp {
 	 * is returned as text and maybe clicking a button we can attach a boolean expression
 	 * to it with listener */ // button idea
 
-	public GameApp(){
+	public GameHost(){
 		// variables automatically called
 	}
 
