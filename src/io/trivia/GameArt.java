@@ -1,16 +1,19 @@
 package io.trivia;
 
-//import jdk.internal.reflect.CallerSensitive;
-
 import java.lang.Thread;
 
-import static java.lang.Runnable.*;
-
-
 public class GameArt implements Runnable {
-	Thread thread = new Thread();
 
-	public void gameName() throws InterruptedException {
+	public GameArt() {
+	}
+
+	@Override
+	public void run() {
+		Thread thread = new Thread();
+		GameArt art = new GameArt();
+	}
+
+	public void loadTitle() throws InterruptedException {
 		System.out.println("  _______ _                           _   _           ______                    _   _                   _ ");
 		Thread.sleep(400);
 		System.out.println(" |__   __| |                         | \\ | |         |  ____|                  | | (_)                 | |");
@@ -27,26 +30,8 @@ public class GameArt implements Runnable {
 		Thread.sleep(250);
 		System.out.println("                                                                         |_|                              ");
 	}
-
-
-
-
-
-
-	public void setPriority(int newPriority) {thread.setPriority(newPriority);}
-
-	public int getPriority() {return thread.getPriority();}
-
-	public void setName(String name) {thread.setName(name);}
-
-	public String getName() {return thread.getName();}
-
-
-	@Override
-	public void run() {
-
-	}
 }
+
 
 
 
