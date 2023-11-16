@@ -9,16 +9,21 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.Collection;
 
-public class GameQuestion {
+public class QuestionService {
 
-    public static void getJson() {
+    public static String getJson(Category category) {
+        String result;
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category=&type=boolean&difficulty=easy&limit=1")).build();
-        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category="
+                        + category + "&type=boolean&difficulty=easy&limit=1")).build();
+        return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenAccept(GameQuestion::parse)
+                //.thenAccept(QuestionService::assign)
+                //.thenApply(QuestionService::parse)
+                //.thenAccept(System.out::println)
                 .join();
     }
 
@@ -30,9 +35,13 @@ public class GameQuestion {
             JSONObject result = arr.getJSONObject(i);
             String question = result.getString("question");
             String correctAnswer = result.getString("correct_answer");
-            String pureQuestion = StringEscapeUtils.unescapeHtml3(question);
+            String pureQuestion = StringEscapeUtils.unescapeHtml4(question);
+            int intId = result.getInt("id");
+            String id = String.valueOf(intId);
+
             res.add(pureQuestion);
             res.add(correctAnswer);
+            res.add(id);
             System.out.println(res); // this line for testing purposes
         }
         return res;
