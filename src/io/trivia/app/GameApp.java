@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class GameApp {
 	Prompter prompter = new Prompter(new Scanner(System.in));
 
+	// place into methods
 	public String name = prompter.prompt("Hello, to load the game please enter your name: ");
 
 	public final String loadScreen =(String.format(	"Hello %s! Are you ready to play Big Tech? or Small Package?" +

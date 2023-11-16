@@ -5,14 +5,7 @@ import io.trivia.app.GameApp;
 public class Main {
 	public static void main(String[] args) {
 
-		GameApp game = new GameApp(){};
-
-
-
+		GameApp game = new GameApp();
 
 	}
-
-
-
-
 }
