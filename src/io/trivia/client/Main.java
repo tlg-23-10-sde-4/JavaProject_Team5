@@ -15,12 +15,18 @@ import static io.trivia.Category.*;
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
 
+		/*
+		GAME ART ASCII -> START <-
 
 
+		This will be the beginning of the Ascii screen animations starting with loadTitle.
+		Next will outline the first frame to give a retro arcade start up.
+
+		*/
 		GameArt art = new GameArt();
 		art.loadTitle();
 		art.run();
-
+		// GAME ART ASCII ---------------------------------------------------------------------------------
 		GameHost a = new GameHost();
 		a.welcomePrompt();
 
