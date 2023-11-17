@@ -2,75 +2,61 @@ package io.trivia.app;
 
 
 import com.apps.util.Prompter; // Jays Prompter Class
-import io.trivia.Category;
-import io.trivia.Player;
-import io.trivia.Question;
-import io.trivia.QuestionService;
 
 import java.util.*;
 
 public class GameHost {
 
 
-    public void startGame() {
-        String name = namePrompt();
-        String category = categoryPrompt();
-        System.out.println("To play, answer with either 'True', or 'False'. ");
-        playGame(category, name);
-    }
-
-    private void playGame(String category, String name) {
-        Prompter prompter = new Prompter(new Scanner(System.in));
-        Player player = new Player(name);
-
-        for (int i = 0; i < 10; i++) {
-            ArrayList<String> newQ = new ArrayList<>();
-            newQ = QuestionService.newQuestion(Category.valueOf(category));
-            String question = newQ.get(0);
-            String rightAns = newQ.get(1);
-            String wrongAns = newQ.get(2);
-
-            System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
-            System.out.println();
-            System.out.println(question);
-            String userAnswer = prompter.prompt("");
-            userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
-            rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
-            wrongAns = wrongAns.trim().toUpperCase(Locale.ROOT);
-            if (userAnswer.equals(rightAns)) {
-                System.out.println("You got it right!");
-                System.out.println();
-                player.incrementScore();
-            } else if (userAnswer.equals(wrongAns)) {
-                System.out.println("You got it wrong :(");
-                System.out.println();
-            }
-        }
-        System.out.println("You got " + player.getScore() + " points out of 10!");
-    }
-
-    public String namePrompt() {
-        Prompter prompter = new Prompter(new Scanner(System.in));
-        String name = prompter.prompt("Please enter your name: ");
-        return name;
-    }
-
-    public String categoryPrompt() {
-        List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
-        Prompter prompter = new Prompter(new Scanner(System.in));
-        String category;
-        while (true) {
-            System.out.println(cats);
-            category = prompter.prompt("Please choose a category: ");
-            category = category.trim().toUpperCase(Locale.ROOT);
-            if (cats.contains(category)) {
-                return category;
-            }
-        }
-    }
-}
+	List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
 
 
+/*	public void startGame() {
+		String name = namePrompt();
+		String category = categoryPrompt();
+	}
+
+	public String namePrompt () {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String name = prompter.prompt("Please enter your name: ");
+		return name;
+
+	public void welcomePrompt() {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String name = prompter.prompt("Please enter your name: ");
+		System.out.println("The game categories are: " );
+	}
+
+	public String categoryPrompt() {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String category;
+		while (true) {
+			System.out.println(cats);
+			category = prompter.prompt("Please choose a category: ");
+			category = category.trim().toUpperCase(Locale.ROOT);
+			if (cats.contains(category)) {
+				//System.out.println(category); // test
+				return category;
+			}
+		}
+	}*/
+
+
+//	Prompter prompter = new Prompter(new Scanner(System.in));
+//
+//	// place into methods
+//	public String name = prompter.prompt("Hello, to load the game please enter your name: ");
+//
+//	public final String loadScreen =(String.format(	"Hello %s! Are you ready to play Big Tech? or Small Package?" +
+//													" Enter (Y) to begin or (Q) to exit the game.", getName()));
+//
+//	public String play = prompter.prompt	("(Y) to play"); // plan on making a boolean variable for (Y)
+//	public String exit = prompter.prompt	("(Q) to exit"); // plan on making a boolean variable for (Q)
+//	public String choice = prompter.prompt	("True or False: ");
+//	/* thinking about adding a button for true or false because everything in the console
+//	 * is returned as text and maybe clicking a button we can attach a boolean expression
+//	 * to it with listener */ // button idea
+//
 //	public GameHost(){
 //		// variables automatically called
 //	}
@@ -95,7 +81,7 @@ public class GameHost {
 //		return loadScreen;
 //	}
 
-
+}
 
 
 /*
