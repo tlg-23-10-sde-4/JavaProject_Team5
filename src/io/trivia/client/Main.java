@@ -28,7 +28,7 @@ public class Main {
 		art.run();
 		// GAME ART ASCII ---------------------------------------------------------------------------------
 		GameHost a = new GameHost();
-		a.welcomePrompt();
+		//a.welcomePrompt();
 
 
 
