@@ -1,47 +1,15 @@
 package io.trivia.app;
 
 
-import com.apps.util.Prompter; // Jays Prompter Class
+import com.apps.util.Prompter;
 import io.trivia.Category;
 import io.trivia.Player;
-import io.trivia.Question;
 import io.trivia.QuestionService;
 
 import java.util.*;
 
 public class GameHost {
-	List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
 
-
-/*	public void startGame() {
-		String name = namePrompt();
-		String category = categoryPrompt();
-	}
-
-	public String namePrompt () {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String name = prompter.prompt("Please enter your name: ");
-		return name;
-
-	public void welcomePrompt() {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String name = prompter.prompt("Please enter your name: ");
-		System.out.println("The game categories are: " );
-	}
-
-	public String categoryPrompt() {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String category;
-		while (true) {
-			System.out.println(cats);
-			category = prompter.prompt("Please choose a category: ");
-			category = category.trim().toUpperCase(Locale.ROOT);
-			if (cats.contains(category)) {
-				//System.out.println(category); // test
-				return category;
-			}
-		}
-	}*/
 
     public void startGame() {
         String name = namePrompt();
@@ -53,11 +21,18 @@ public class GameHost {
     private void playGame(String category, String name) {
         Prompter prompter = new Prompter(new Scanner(System.in));
         Player player = new Player(name);
+        HashSet<String> askedQuestions = new HashSet<>();
 
         for (int i = 0; i < 10; i++) {
-            ArrayList<String> newQ = new ArrayList<>();
-            newQ = QuestionService.newQuestion(Category.valueOf(category));
-            String question = newQ.get(0);
+            ArrayList<String> newQ;
+            String question;
+
+            do {
+                newQ = QuestionService.newQuestion(Category.valueOf(category));
+                question = newQ.get(0);
+            } while (askedQuestions.contains(question));
+
+            askedQuestions.add(question);
             String rightAns = newQ.get(1);
             String wrongAns = newQ.get(2);
 
@@ -82,8 +57,7 @@ public class GameHost {
 
     public String namePrompt() {
         Prompter prompter = new Prompter(new Scanner(System.in));
-        String name = prompter.prompt("Please enter your name: ");
-        return name;
+        return prompter.prompt("Please enter your name: ");
     }
 
     public String categoryPrompt() {
@@ -100,7 +74,6 @@ public class GameHost {
         }
     }
 }
-
 
 
 //	public GameHost(){
