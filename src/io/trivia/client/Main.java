@@ -16,7 +16,7 @@ import static io.trivia.Category.*;
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
 		AsciiArt asciiArt = new AsciiArt();
-		asciiArt.loadTitle();
+		AsciiArt.loadTitle();
 
 		GameHost a = new GameHost();
 		a.startGame();
