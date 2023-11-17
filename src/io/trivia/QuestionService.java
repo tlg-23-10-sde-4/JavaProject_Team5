@@ -36,14 +36,11 @@ public class QuestionService {
             int intId = result.getInt("id");
             String id = String.valueOf(intId);
 
-            ArrayList<String> allAnswers = new ArrayList<>();
-            for (Object s : wrongAnswer){
-                allAnswers.add(s.toString());
-            }
-            allAnswers.add(correctAnswer);
             res.add(pureQuestion);
             res.add(correctAnswer);
-            res.add(String.valueOf(allAnswers));
+            for (Object s : wrongAnswer){
+                res.add(s.toString());
+            }
             res.add(id);
             //System.out.println(res); // this line for testing purposes
         }
