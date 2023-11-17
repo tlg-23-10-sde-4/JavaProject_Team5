@@ -42,7 +42,7 @@ public class GameHost {
 			}
 		}
 	}*/
-=======
+
     public void startGame() {
         String name = namePrompt();
         String category = categoryPrompt();

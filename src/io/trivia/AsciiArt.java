@@ -1,6 +1,8 @@
 package io.trivia;
 
-public class AsciiArt extends CallAscii{
+import java.lang.Thread;
+
+public class AsciiArt implements Runnable {
 	String ascii;
 
 	public void loadTitle() throws InterruptedException {
@@ -22,5 +24,8 @@ public class AsciiArt extends CallAscii{
 	}
 
 
+	@Override
+	public void run() {
 
+	}
 }
