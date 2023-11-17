@@ -19,6 +19,10 @@ public class Player {
         this.score += points;
     }
 
+    public void incrementScore() {
+        this.score++;
+    }
+
     public String getName() {
         return name;
     }
