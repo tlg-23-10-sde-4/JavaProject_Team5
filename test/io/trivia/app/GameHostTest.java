@@ -12,12 +12,12 @@ public class GameHostTest {
     @Test
     public void welcomePromptTest() {
 
-        GameHost a = new GameHost();
+        GameHost host = new GameHost();
         //a.namePrompt();
-
-        ArrayList<String> a = new ArrayList<>();
+/*
+        ArrayList<String> hostArray = new ArrayList<>();
         a = QuestionService.newQuestion(Category.ANIMALS);
-        System.out.println(a);
+        System.out.println(a);*/
 
     }
 }
