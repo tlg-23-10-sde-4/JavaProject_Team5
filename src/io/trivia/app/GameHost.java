@@ -1,15 +1,12 @@
 package io.trivia.app;
 
-
 import com.apps.util.Prompter;
 import io.trivia.Category;
 import io.trivia.Player;
 import io.trivia.QuestionService;
-
 import java.util.*;
 
 public class GameHost {
-
 
     public void startGame() {
         String name = namePrompt();
@@ -79,7 +76,6 @@ public class GameHost {
         }
     }
 
-
     public String namePrompt() {
         Prompter prompter = new Prompter(new Scanner(System.in));
         return prompter.prompt("Please enter your name: ");
@@ -99,18 +95,3 @@ public class GameHost {
         }
     }
 }
-
-
-
-
-/*
- * game host logic:
- * prompt user for name and category
- * starts game, user name and their score is always displayed like a "scoreboard"
- * ask user question, they answer with true or false.
- * message saying if they were right or not.
- * score is increased (or not)
- * another question is asked
- * after the final (10?) question is asked, show message displaying their score.
- *
- */
