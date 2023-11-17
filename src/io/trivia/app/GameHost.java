@@ -22,8 +22,8 @@ public class GameHost {
         Prompter prompter = new Prompter(new Scanner(System.in));
         Player player = new Player(name);
         HashSet<String> askedQuestions = new HashSet<>();
-        int i = 0;
 
+        int i = 0;
         while (true) {
             ArrayList<String> newQ;
             String question;
@@ -32,12 +32,22 @@ public class GameHost {
                 newQ = QuestionService.newQuestion(Category.valueOf(category));
                 question = newQ.get(0);
             } while (askedQuestions.contains(question));
-
             askedQuestions.add(question);
+
             String rightAns = newQ.get(1);
+            ArrayList<String> wrongChoices = new ArrayList<>();
             HashSet<String> choices = new HashSet<>();
-            for (String choice : newQ.get(2).split(",")) {
-                choices.add(choice);
+
+            for (int j = 1; j < 5; j++) {
+                String temp;
+                temp = newQ.get(j).toUpperCase(Locale.ROOT).trim();
+                choices.add(temp);
+            }
+
+            for (int j = 2; j < 5; j++) {
+                String temp;
+                temp = newQ.get(j).toUpperCase(Locale.ROOT).trim();
+                wrongChoices.add(temp);
             }
 
             while (true) {
@@ -54,17 +64,18 @@ public class GameHost {
                     System.out.println();
                     player.incrementScore();
                     break;
-                } else if (userAnswer.equals(choices)) {
+                } else if (wrongChoices.contains(userAnswer)) {
                     System.out.println("You got it wrong :(");
-                    System.out.println();
+                    System.out.println("The correct answer was " + rightAns);
+                    System.out.println("THROW NEW EXCEPTION!!!!");
                     break;
                 }
             }
             i++;
-            if(i == 9) {
+            if (i == 9) {
                 System.out.println("You got " + player.getScore() + " points out of 10!");
                 break;
-          }
+            }
         }
     }
 
@@ -88,31 +99,6 @@ public class GameHost {
         }
     }
 }
-
-
-//	public GameHost(){
-//		// variables automatically called
-//	}
-//
-//	public String getPlay() {
-//		return play;
-//	}
-//
-//	public String getExit()  {
-//		return exit;
-//	}
-//
-//	public String getChoice() {
-//		return choice;
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public String getLoadScreen() {
-//		return loadScreen;
-//	}
 
 
 
