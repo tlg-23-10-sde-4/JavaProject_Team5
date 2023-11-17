@@ -22,8 +22,9 @@ public class GameHost {
         Prompter prompter = new Prompter(new Scanner(System.in));
         Player player = new Player(name);
         HashSet<String> askedQuestions = new HashSet<>();
+        int i = 0;
 
-        for (int i = 0; i < 10; i++) {
+        while (true) {
             ArrayList<String> newQ;
             String question;
 
@@ -36,24 +37,33 @@ public class GameHost {
             String rightAns = newQ.get(1);
             String wrongAns = newQ.get(2);
 
-            System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
-            System.out.println();
-            System.out.println(question);
-            String userAnswer = prompter.prompt("");
-            userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
-            rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
-            wrongAns = wrongAns.trim().toUpperCase(Locale.ROOT);
-            if (userAnswer.equals(rightAns)) {
-                System.out.println("You got it right!");
+            while (true) {
+                System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
                 System.out.println();
-                player.incrementScore();
-            } else if (userAnswer.equals(wrongAns)) {
-                System.out.println("You got it wrong :(");
-                System.out.println();
+                System.out.println(question);
+                String userAnswer = prompter.prompt("");
+                userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
+                rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
+                wrongAns = wrongAns.trim().toUpperCase(Locale.ROOT);
+                if (userAnswer.equals(rightAns)) {
+                    System.out.println("You got it right!");
+                    System.out.println();
+                    player.incrementScore();
+                    break;
+                } else if (userAnswer.equals(wrongAns)) {
+                    System.out.println("You got it wrong :(");
+                    System.out.println();
+                    break;
+                }
             }
+            i++;
+            if(i == 9) {
+                System.out.println("You got " + player.getScore() + " points out of 10!");
+                break;
+          }
         }
-        System.out.println("You got " + player.getScore() + " points out of 10!");
     }
+
 
     public String namePrompt() {
         Prompter prompter = new Prompter(new Scanner(System.in));

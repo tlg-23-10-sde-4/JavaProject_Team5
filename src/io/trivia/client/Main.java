@@ -1,16 +1,6 @@
 package io.trivia.client;
-
-
-import io.trivia.Category;
 import io.trivia.AsciiArt;
-import io.trivia.QuestionService;
 import io.trivia.app.GameHost;
-import static java.lang.Thread.*;
-
-import io.trivia.app.GameHost;
-import java.util.ArrayList;
-
-import static io.trivia.Category.*;
 
 
 public class Main {
