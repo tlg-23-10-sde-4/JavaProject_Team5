@@ -31,12 +31,14 @@ public class QuestionService {
             JSONObject result = arr.getJSONObject(i);
             String question = result.getString("question");
             String correctAnswer = result.getString("correct_answer");
+            JSONArray wrongAnswer = result.getJSONArray("incorrect_answers");
             String pureQuestion = StringEscapeUtils.unescapeHtml4(question);
             int intId = result.getInt("id");
             String id = String.valueOf(intId);
 
             res.add(pureQuestion);
             res.add(correctAnswer);
+            res.add(wrongAnswer.getString(0));
             res.add(id);
             //System.out.println(res); // this line for testing purposes
         }
