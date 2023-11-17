@@ -56,24 +56,6 @@ public class AsciiArt implements Runnable {
 		System.out.print(progressBar + "\r");
 	}
 
-/*	public static void simulateTime() {
-		int totalTime = 3000; // Total time in milliseconds (5 seconds)
-		int sleepInterval = 100; // Sleep interval in milliseconds (100 milliseconds)
-		for(int elapsed = 0; elapsed <= totalTime; elapsed += sleepInterval) {
-			// Simulate work being done (replace this with your actual work)
-			try {
-				Thread.sleep(sleepInterval);
-			}
-			catch(InterruptedException e) {
-				e.printStackTrace();
-			}
-			int remainingSeconds = (totalTime - elapsed) / 1000;
-			System.out.print("\r Seconds remaining: " + "║ " + remainingSeconds + " ║");
-		}
-		System.out.println("\n");
-	}*/
-
-
 	public static void loadTitle() throws InterruptedException {
 		System.out.println(weAre);
 
