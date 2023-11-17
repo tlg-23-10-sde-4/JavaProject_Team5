@@ -10,8 +10,39 @@ import io.trivia.QuestionService;
 import java.util.*;
 
 public class GameHost {
+	List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
 
 
+/*	public void startGame() {
+		String name = namePrompt();
+		String category = categoryPrompt();
+	}
+
+	public String namePrompt () {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String name = prompter.prompt("Please enter your name: ");
+		return name;
+
+	public void welcomePrompt() {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String name = prompter.prompt("Please enter your name: ");
+		System.out.println("The game categories are: " );
+	}
+
+	public String categoryPrompt() {
+		Prompter prompter = new Prompter(new Scanner(System.in));
+		String category;
+		while (true) {
+			System.out.println(cats);
+			category = prompter.prompt("Please choose a category: ");
+			category = category.trim().toUpperCase(Locale.ROOT);
+			if (cats.contains(category)) {
+				//System.out.println(category); // test
+				return category;
+			}
+		}
+	}*/
+=======
     public void startGame() {
         String name = namePrompt();
         String category = categoryPrompt();
@@ -69,6 +100,7 @@ public class GameHost {
         }
     }
 }
+
 
 
 //	public GameHost(){
