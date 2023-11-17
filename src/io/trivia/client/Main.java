@@ -7,13 +7,17 @@ import io.trivia.QuestionService;
 import io.trivia.app.GameHost;
 import static java.lang.Thread.*;
 
+import io.trivia.app.GameHost;
 import java.util.ArrayList;
 
 import static io.trivia.Category.*;
 
 
 public class Main {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
+			GameHost a = new GameHost();
+			a.startGame();
+	}
 
 		/*
 		GAME ART ASCII -> START <-
@@ -23,12 +27,12 @@ public class Main {
 		Next will outline the first frame to give a retro arcade start up.
 
 		*/
-		GameArt art = new GameArt();
-		art.loadTitle();
-		art.run();
+		//GameArt art = new GameArt();
+		//art.loadTitle();
+		//art.run();
 		// GAME ART ASCII ---------------------------------------------------------------------------------
-		GameHost a = new GameHost();
-		a.welcomePrompt();
+		//GameHost a = new GameHost();
+		//a.welcomePrompt();
 
 
 
@@ -38,5 +42,5 @@ public class Main {
 //		GameArt thread = new GameArt();
 //		thread.gameName();
 //		GameHost game = new GameHost();
-	}
+
 }
