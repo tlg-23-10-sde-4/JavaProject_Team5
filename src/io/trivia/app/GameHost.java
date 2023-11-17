@@ -11,7 +11,7 @@ public class GameHost {
 	List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
 
 
-	public void startGame() {
+/*	public void startGame() {
 		String name = namePrompt();
 		String category = categoryPrompt();
 	}
@@ -21,7 +21,7 @@ public class GameHost {
 		String name = prompter.prompt("Please enter your name: ");
 		return name;
 
-	public void welcomePrompt () {
+	public void welcomePrompt() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
 		String name = prompter.prompt("Please enter your name: ");
 		System.out.println("The game categories are: " );
@@ -39,7 +39,7 @@ public class GameHost {
 				return category;
 			}
 		}
-	}
+	}*/
 
 
 //	Prompter prompter = new Prompter(new Scanner(System.in));

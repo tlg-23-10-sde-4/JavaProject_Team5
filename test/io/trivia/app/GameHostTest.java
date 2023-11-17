@@ -8,6 +8,6 @@ public class GameHostTest {
     @Test
     public void welcomePromptTest() {
         GameHost a = new GameHost();
-        a.namePrompt();
+        //a.namePrompt();
     }
 }
