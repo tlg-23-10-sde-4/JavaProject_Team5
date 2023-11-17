@@ -1,47 +1,15 @@
 package io.trivia.app;
 
 
-import com.apps.util.Prompter; // Jays Prompter Class
+import com.apps.util.Prompter;
 import io.trivia.Category;
 import io.trivia.Player;
-import io.trivia.Question;
 import io.trivia.QuestionService;
 
 import java.util.*;
 
 public class GameHost {
-	List<String> cats = Arrays.asList("ENTERTAINMENT", "SPORTS", "SCIENCE", "ANIMALS", "POLITICS", "GEOGRAPHY", "HISTORY");
 
-
-/*	public void startGame() {
-		String name = namePrompt();
-		String category = categoryPrompt();
-	}
-
-	public String namePrompt () {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String name = prompter.prompt("Please enter your name: ");
-		return name;
-
-	public void welcomePrompt() {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String name = prompter.prompt("Please enter your name: ");
-		System.out.println("The game categories are: " );
-	}
-
-	public String categoryPrompt() {
-		Prompter prompter = new Prompter(new Scanner(System.in));
-		String category;
-		while (true) {
-			System.out.println(cats);
-			category = prompter.prompt("Please choose a category: ");
-			category = category.trim().toUpperCase(Locale.ROOT);
-			if (cats.contains(category)) {
-				//System.out.println(category); // test
-				return category;
-			}
-		}
-	}*/
 
     public void startGame() {
         String name = namePrompt();
@@ -53,37 +21,68 @@ public class GameHost {
     private void playGame(String category, String name) {
         Prompter prompter = new Prompter(new Scanner(System.in));
         Player player = new Player(name);
+        HashSet<String> askedQuestions = new HashSet<>();
 
-        for (int i = 0; i < 10; i++) {
-            ArrayList<String> newQ = new ArrayList<>();
-            newQ = QuestionService.newQuestion(Category.valueOf(category));
-            String question = newQ.get(0);
+        int i = 0;
+        while (true) {
+            ArrayList<String> newQ;
+            String question;
+
+            do {
+                newQ = QuestionService.newQuestion(Category.valueOf(category));
+                question = newQ.get(0);
+            } while (askedQuestions.contains(question));
+            askedQuestions.add(question);
+
             String rightAns = newQ.get(1);
-            String wrongAns = newQ.get(2);
+            ArrayList<String> wrongChoices = new ArrayList<>();
+            HashSet<String> choices = new HashSet<>();
 
-            System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
-            System.out.println();
-            System.out.println(question);
-            String userAnswer = prompter.prompt("");
-            userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
-            rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
-            wrongAns = wrongAns.trim().toUpperCase(Locale.ROOT);
-            if (userAnswer.equals(rightAns)) {
-                System.out.println("You got it right!");
+            for (int j = 1; j < 5; j++) {
+                String temp;
+                temp = newQ.get(j).toUpperCase(Locale.ROOT).trim();
+                choices.add(temp);
+            }
+
+            for (int j = 2; j < 5; j++) {
+                String temp;
+                temp = newQ.get(j).toUpperCase(Locale.ROOT).trim();
+                wrongChoices.add(temp);
+            }
+
+            while (true) {
+                System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
                 System.out.println();
-                player.incrementScore();
-            } else if (userAnswer.equals(wrongAns)) {
-                System.out.println("You got it wrong :(");
-                System.out.println();
+                System.out.println(question);
+                choices.stream().forEach(System.out::println);
+                String userAnswer = prompter.prompt("");
+                userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
+                rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
+                //choices = choices().toUpperCase(Locale.ROOT);
+                if (userAnswer.equals(rightAns)) {
+                    System.out.println("You got it right!");
+                    System.out.println();
+                    player.incrementScore();
+                    break;
+                } else if (wrongChoices.contains(userAnswer)) {
+                    System.out.println("You got it wrong :(");
+                    System.out.println("The correct answer was " + rightAns);
+                    System.out.println("THROW NEW EXCEPTION!!!!");
+                    break;
+                }
+            }
+            i++;
+            if (i == 9) {
+                System.out.println("You got " + player.getScore() + " points out of 10!");
+                break;
             }
         }
-        System.out.println("You got " + player.getScore() + " points out of 10!");
     }
+
 
     public String namePrompt() {
         Prompter prompter = new Prompter(new Scanner(System.in));
-        String name = prompter.prompt("Please enter your name: ");
-        return name;
+        return prompter.prompt("Please enter your name: ");
     }
 
     public String categoryPrompt() {
@@ -100,32 +99,6 @@ public class GameHost {
         }
     }
 }
-
-
-
-//	public GameHost(){
-//		// variables automatically called
-//	}
-//
-//	public String getPlay() {
-//		return play;
-//	}
-//
-//	public String getExit()  {
-//		return exit;
-//	}
-//
-//	public String getChoice() {
-//		return choice;
-//	}
-//
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public String getLoadScreen() {
-//		return loadScreen;
-//	}
 
 
 

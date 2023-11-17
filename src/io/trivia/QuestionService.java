@@ -9,7 +9,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class QuestionService {
 
@@ -17,7 +16,7 @@ public class QuestionService {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category="
-                        + category + "&type=boolean&difficulty=easy&limit=1")).build();
+                        + category + "&type=multiple&difficulty=easy&limit=1")).build();
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .join();
@@ -33,12 +32,15 @@ public class QuestionService {
             String correctAnswer = result.getString("correct_answer");
             JSONArray wrongAnswer = result.getJSONArray("incorrect_answers");
             String pureQuestion = StringEscapeUtils.unescapeHtml4(question);
+            pureQuestion = StringEscapeUtils.unescapeHtml3(question);
             int intId = result.getInt("id");
             String id = String.valueOf(intId);
 
             res.add(pureQuestion);
             res.add(correctAnswer);
-            res.add(wrongAnswer.getString(0));
+            for (Object s : wrongAnswer){
+                res.add(s.toString());
+            }
             res.add(id);
             //System.out.println(res); // this line for testing purposes
         }
