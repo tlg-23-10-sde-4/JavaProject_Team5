@@ -35,22 +35,26 @@ public class GameHost {
 
             askedQuestions.add(question);
             String rightAns = newQ.get(1);
-            String wrongAns = newQ.get(2);
+            HashSet<String> choices = new HashSet<>();
+            for (String choice : newQ.get(2).split(",")) {
+                choices.add(choice);
+            }
 
             while (true) {
                 System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
                 System.out.println();
                 System.out.println(question);
+                choices.stream().forEach(System.out::println);
                 String userAnswer = prompter.prompt("");
                 userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
                 rightAns = rightAns.trim().toUpperCase(Locale.ROOT);
-                wrongAns = wrongAns.trim().toUpperCase(Locale.ROOT);
+                //choices = choices().toUpperCase(Locale.ROOT);
                 if (userAnswer.equals(rightAns)) {
                     System.out.println("You got it right!");
                     System.out.println();
                     player.incrementScore();
                     break;
-                } else if (userAnswer.equals(wrongAns)) {
+                } else if (userAnswer.equals(choices)) {
                     System.out.println("You got it wrong :(");
                     System.out.println();
                     break;
