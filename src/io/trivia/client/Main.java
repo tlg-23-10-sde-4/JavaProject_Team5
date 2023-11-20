@@ -2,6 +2,8 @@ package io.trivia.client;
 import com.apps.util.Prompter;
 import io.trivia.AsciiArt;
 import io.trivia.app.GameHost;
+import io.trivia.app.GameHost2;
+
 import java.util.Scanner;
 
 public class Main {
@@ -12,7 +14,7 @@ public class Main {
 
 		String runAgain = "y";
 		while(runAgain.equals("y")) {
-			GameHost a = new GameHost();
+			GameHost2 a = new GameHost2();
 			a.startGame();
 			runAgain = prompter.prompt("Press 'y' to play again, any other character to exit. ");
 		}

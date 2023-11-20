@@ -60,6 +60,7 @@ public class GameHost {
             }
             //
 
+
             while (true) {
                 System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
                 System.out.println();
@@ -74,9 +75,9 @@ public class GameHost {
                     player.incrementScore();
                     break;
                 } else if (wrongChoices.contains(userAnswer)) {
+                    System.out.println("THROW NEW EXCEPTION!!!!");
                     System.out.println("You got it wrong :(");
                     System.out.println("The correct answer was " + rightAns);
-                    System.out.println("THROW NEW EXCEPTION!!!!");
                     break;
                 }
             }
