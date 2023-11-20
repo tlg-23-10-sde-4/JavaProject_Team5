@@ -5,22 +5,28 @@ import io.trivia.Category;
 import io.trivia.Player;
 import io.trivia.Question;
 import org.apache.commons.lang3.EnumUtils;
+
 import java.util.*;
 
 public class GameHost {
 
     public void startGame() {
-        String name = namePromptPlayer1();
-        String name2 = namePromptPlayer2();
-        String category = categoryPrompt();
-        Player player = new Player(name);
-        Player player2 = new Player(name2);
-        playGame(category, player, player2);
-        endGameMessage(player, player2);
+        Prompter prompter = new Prompter(new Scanner(System.in));
+        String runAgain = "y";
+        while (runAgain.equals("y")) {
+            String name = namePromptPlayer1();
+            String name2 = namePromptPlayer2();
+            String category = categoryPrompt();
+            Player player = new Player(name);
+            Player player2 = new Player(name2);
+            playGame(category, player, player2);
+            endGameMessage(player, player2);
+            runAgain = prompter.prompt("Press 'y' to play again, any other character to exit. ");
+        }
     }
 
     private void playGame(String category, Player player, Player player2) {
-        HashSet<String> askedQuestions = new HashSet<>();
+        Set<String> askedQuestions = new HashSet<>();
         Question.askQuestionOps(askedQuestions, player, player2, category);
     }
 

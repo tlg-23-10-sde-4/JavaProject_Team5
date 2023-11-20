@@ -8,6 +8,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 public class QuestionService {
 
@@ -21,8 +22,8 @@ public class QuestionService {
                 .join();
     }
 
-    public static ArrayList<String> parse(String responseBody) {
-        ArrayList<String> res = new ArrayList<>();
+    public static List<String> parse(String responseBody) {
+        List<String> res = new ArrayList<String>();
         JSONArray arr = new JSONArray(responseBody);
         for (int i = 0; i < arr.length(); i++) {
             JSONObject result = arr.getJSONObject(i);
@@ -41,7 +42,7 @@ public class QuestionService {
         return res;
     }
 
-    public static ArrayList<String> newQuestion(Category category) {
+    public static List<String> newQuestion(Category category) {
         return QuestionService.parse(QuestionService.getJson(category));
     }
 }

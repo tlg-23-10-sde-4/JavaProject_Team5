@@ -31,11 +31,4 @@ public class QuestionTest {
         assertEquals(question.wrongChoices().size(), 3.0, .001);
     }
 
-    @Test
-    public void nameAndQuestionDisplay_shouldReturnUpdatedHashset_whenCalled() {
-        ArrayList<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
-        Question question = new Question(tester);
-        HashSet<String> hSet = new HashSet<>();
-        //Question.nameAndQuestionDisplay();
-    }
 }

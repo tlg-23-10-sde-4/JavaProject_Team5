@@ -10,7 +10,7 @@ public class Question {
     private final String wrongChoice2;
     private final String wrongChoice3;
 
-    public Question(ArrayList<String> question) {
+    public Question(List<String> question) {
         this.body = question.get(0);
         this.answer = question.get(1).toUpperCase(Locale.ROOT).trim();
         this.wrongChoice1 = question.get(2).toUpperCase(Locale.ROOT).trim();
@@ -18,16 +18,17 @@ public class Question {
         this.wrongChoice3 = question.get(4).toUpperCase(Locale.ROOT).trim();
     }
 
-    public ArrayList<String> allChoicesRandom() {
-        ArrayList<String> randomizedChoices = new ArrayList<>(Arrays.asList(getAnswer(), getWrongChoice1(),
+    public List<String> allChoicesRandom() {
+        List<String> randomizedChoices = new ArrayList<>(Arrays.asList(getAnswer(), getWrongChoice1(),
                 getWrongChoice2(), getWrongChoice3()));
         Collections.shuffle(randomizedChoices);
         return randomizedChoices;
     }
 
-    public ArrayList<String> wrongChoices() {
-        return new ArrayList<>(Arrays.asList(getWrongChoice1(),
+    public List<String> wrongChoices() {
+         List <String> wrong = new ArrayList<>(Arrays.asList(getWrongChoice1(),
                 getWrongChoice2(), getWrongChoice3()));
+         return wrong;
     }
 
     public void askQuestionDisplay(Player player) {
@@ -37,7 +38,7 @@ public class Question {
             System.out.println();
             System.out.println(this.getBody());
 
-            ArrayList<String> choices = (this.allChoicesRandom());
+            List<String> choices = (this.allChoicesRandom());
             for (int i = 0; i < choices.size(); i++) {
                 System.out.println((i + 1) + ". " + choices.get(i));
             }
@@ -45,16 +46,16 @@ public class Question {
             int userChoice;
             while (true) {
                 try {
-                userChoice = Integer.parseInt(prompter.prompt("Your Answer (1-4): "));
-                if (userChoice < 1 || userChoice > 4) {
-                    System.out.println("Please enter a number between 1 and 4.");
-                } else {
-                    break;
+                    userChoice = Integer.parseInt(prompter.prompt("Your Answer (1-4): "));
+                    if (userChoice < 1 || userChoice > 4) {
+                        System.out.println("Please enter a number between 1 and 4.");
+                    } else {
+                        break;
+                    }
+                } catch(NumberFormatException e){
+                    System.out.println("Invalid input. Please enter a number between 1 and 4.");
                 }
-            } catch(NumberFormatException e){
-                System.out.println("Invalid input. Please enter a number between 1 and 4.");
             }
-        }
             String selectedAnswer = choices.get(userChoice - 1);
             if (selectedAnswer.equals(this.getAnswer())) {
                 System.out.println();
@@ -74,7 +75,7 @@ public class Question {
         }
     }
 
-    public static void askQuestionOps(HashSet<String> askedQuestions, Player player, Player player2, String category) {
+    public static void askQuestionOps(Set<String> askedQuestions, Player player, Player player2, String category) {
         boolean player1Turn = true;
         for (int i = 0; i < 10; i++) {
             if (player1Turn == true) {
@@ -87,9 +88,9 @@ public class Question {
         }
     }
 
-    public static HashSet<String> nameAndQuestionDisplay(Player player, HashSet<String> askedQuestions, String category) {
+    public static Set<String> nameAndQuestionDisplay(Player player, Set<String> askedQuestions, String category) {
         System.out.println(player.getName() + "'s " + "turn");
-        ArrayList<String> newQ;
+        List<String> newQ;
         String body;
         do {
             newQ = QuestionService.newQuestion(Category.valueOf(category));
