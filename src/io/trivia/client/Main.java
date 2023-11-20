@@ -19,7 +19,6 @@ public class Main {
 		}
 	}
 }
-
 /*
 todo: have "buttons" to select instead of typing answers in.
 todo: refactor code to be more OO based.
