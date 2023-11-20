@@ -2,7 +2,6 @@ package io.trivia;
 
 import com.apps.util.Prompter;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Question {
@@ -21,21 +20,15 @@ public class Question {
     }
 
     public ArrayList<String> allChoicesRandom() {
-        ArrayList<String> randomizedChoices = new ArrayList<>();
-        randomizedChoices.add(getAnswer());
-        randomizedChoices.add(getWrongChoice1());
-        randomizedChoices.add(getWrongChoice2());
-        randomizedChoices.add(getWrongChoice3());
+        ArrayList<String> randomizedChoices = new ArrayList<>(Arrays.asList(getAnswer(), getWrongChoice1(),
+                getWrongChoice2(), getWrongChoice3()));
         Collections.shuffle(randomizedChoices);
         return randomizedChoices;
     }
 
     public ArrayList<String> wrongChoices() {
-        ArrayList<String> wrongChoicesArray = new ArrayList<>();
-        wrongChoicesArray.add(getWrongChoice1());
-        wrongChoicesArray.add(getWrongChoice2());
-        wrongChoicesArray.add(getWrongChoice3());
-        return wrongChoicesArray;
+        return new ArrayList<>(Arrays.asList(getWrongChoice1(),
+                getWrongChoice2(), getWrongChoice3()));
     }
 
     public void askQuestionDisplay(Player player) {
@@ -83,36 +76,28 @@ public class Question {
         boolean player1Turn = true;
         for (int i = 0; i < 10; i++) {
             if (player1Turn == true) {
-                System.out.println(player.getName() + "'s " + "turn");
-                // asks question while making sure duplicate question isn't asked.
-                ArrayList<String> newQ;
-                String body;
-                do {
-                    newQ = QuestionService.newQuestion(Category.valueOf(category));
-                    body = newQ.get(0);
-                } while (askedQuestions.contains(body));
-                askedQuestions.add(body);
-
-                Question question = new Question(newQ);
-                question.askQuestionDisplay(player);
+                askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
                 player1Turn = false;
 
             } else {
-                System.out.println(player2.getName() + "'s " + "turn");
-                // asks question while making sure duplicate question isn't asked.
-                ArrayList<String> newQ;
-                String body;
-                do {
-                    newQ = QuestionService.newQuestion(Category.valueOf(category));
-                    body = newQ.get(0);
-                } while (askedQuestions.contains(body));
-                askedQuestions.add(body);
-
-                Question question = new Question(newQ);
-                question.askQuestionDisplay(player2);
+                askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
                 player1Turn = true;
             }
         }
+    }
+
+    public static HashSet<String> nameAndQuestionDisplay(Player player, HashSet<String> askedQuestions, String category) {
+        System.out.println(player.getName() + "'s " + "turn");
+        ArrayList<String> newQ;
+        String body;
+        do {
+            newQ = QuestionService.newQuestion(Category.valueOf(category));
+            body = newQ.get(0);
+        } while (askedQuestions.contains(body));
+        askedQuestions.add(body);
+        Question question = new Question(newQ);
+        question.askQuestionDisplay(player);
+        return askedQuestions;
     }
 
     public String getBody() {
