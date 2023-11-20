@@ -33,16 +33,12 @@ public class QuestionService {
             JSONArray wrongAnswer = result.getJSONArray("incorrect_answers");
             String pureQuestion = StringEscapeUtils.unescapeHtml4(question);
             pureQuestion = StringEscapeUtils.unescapeHtml3(question);
-            int intId = result.getInt("id");
-            String id = String.valueOf(intId);
 
             res.add(pureQuestion);
             res.add(correctAnswer);
             for (Object s : wrongAnswer){
                 res.add(s.toString());
             }
-            res.add(id);
-            //System.out.println(res); // this line for testing purposes
         }
         return res;
     }
