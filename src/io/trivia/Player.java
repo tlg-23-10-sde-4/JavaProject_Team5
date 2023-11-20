@@ -4,6 +4,9 @@ public class Player {
     private String name;
     private int score;
 
+    public void showScoreAtEnd() {
+        System.out.println(getName() + " got " + getScore() + " points out of 5!");
+    }
 
     public Player(String name) {
         this.name = name;
