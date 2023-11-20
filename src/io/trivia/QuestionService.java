@@ -15,7 +15,7 @@ public class QuestionService {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("https://beta-trivia.bongobot.io/?search=&category="
-                        + category + "&type=multiple&difficulty=easy&limit=1")).build();
+                        + category + "&type=multiple&difficulty=medium&limit=1")).build();
         return client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .join();
