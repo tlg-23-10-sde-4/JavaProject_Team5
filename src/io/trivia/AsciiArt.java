@@ -3,11 +3,8 @@ package io.trivia;
 import com.apps.util.Prompter;
 import io.trivia.app.GameHost;
 import jdk.dynalink.beans.StaticClass;
-
 import java.io.IOException;
 import java.util.Scanner;
-
-import static io.trivia.app.GameHost.startGame;
 
 public class AsciiArt implements Runnable {
 	// AsciiArt is instantiated in GameHost
@@ -43,11 +40,9 @@ public class AsciiArt implements Runnable {
 		}
 	}
 	
-	
 	public static void ansiClear() throws IOException, InterruptedException {
 		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
 	}
-	
 	
 	public void bigTechBanner() throws InterruptedException {
 		String[] asciiHeading = {
@@ -124,9 +119,6 @@ public class AsciiArt implements Runnable {
 		throwNoBanner();
 		sweep(9);
 		System.out.flush();
-		startGame();
-		
-		
 	}
 	
 	@Override
