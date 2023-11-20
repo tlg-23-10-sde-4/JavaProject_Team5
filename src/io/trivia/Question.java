@@ -19,7 +19,6 @@ public class Question {
         this.wrongChoice3 = question.get(4).toUpperCase(Locale.ROOT).trim();
     }
 
-    // returns arraylist of all randomized choices
     public ArrayList<String> allChoicesRandom() {
         ArrayList<String> randomizedChoices = new ArrayList<>();
         randomizedChoices.add(getAnswer());
