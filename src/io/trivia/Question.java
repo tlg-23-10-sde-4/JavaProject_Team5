@@ -58,15 +58,18 @@ public class Question {
         }
             String selectedAnswer = (String) choices.get(userChoice - 1);
             if (selectedAnswer.equals(this.getAnswer())) {
+                System.out.println();
                 System.out.println("You got it right!");
                 System.out.println();
                 player.incrementScore();
                 break;
             } else {
-                System.out.println("THROW NEW EXCEPTION!!!!");
-                System.out.println("You got it wrong :(");
                 System.out.println();
+                System.out.println("You got it wrong :(");
                 System.out.println("The correct answer was " + this.getAnswer());
+                System.out.println();
+                System.out.println("THROW NEW EXCEPTION!!!!");
+                System.out.println();
                 break;
             }
         }
