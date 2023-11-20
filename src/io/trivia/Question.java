@@ -78,6 +78,7 @@ public class Question {
                 Question question = new Question(newQ);
                 question.askQuestionDisplay(player);
                 player1Turn = false;
+
             } else {
                 System.out.println(player2.getName() + "'s " + "turn");
                 // asks question while making sure duplicate question isn't asked.
