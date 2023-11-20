@@ -2,6 +2,7 @@ package io.trivia;
 
 import com.apps.util.Prompter;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Question {
@@ -43,17 +44,35 @@ public class Question {
             System.out.println("Player: " + player.getName() + "   score: " + player.getScore());
             System.out.println();
             System.out.println(this.getBody());
-            System.out.println(this.allChoicesRandom());
-            String userAnswer = prompter.prompt("");
-            userAnswer = userAnswer.trim().toUpperCase(Locale.ROOT);
-            if (userAnswer.equals(this.getAnswer())) {
+
+            ArrayList<String> choices = (this.allChoicesRandom());
+            for (int i = 0; i < choices.size(); i++) {
+                System.out.println((i + 1) + ". " + choices.get(i));
+            }
+
+            int userChoice;
+            while (true) {
+                try {
+                userChoice = Integer.parseInt(prompter.prompt("Your Answer (1-4): "));
+                if (userChoice < 1 || userChoice > 4) {
+                    System.out.println("Please enter a number between 1 and 4.");
+                } else {
+                    break;
+                }
+            } catch(NumberFormatException e){
+                System.out.println("Invalid input. Please enter a number between 1 and 4.");
+            }
+        }
+            String selectedAnswer = (String) choices.get(userChoice - 1);
+            if (selectedAnswer.equals(this.getAnswer())) {
                 System.out.println("You got it right!");
                 System.out.println();
                 player.incrementScore();
                 break;
-            } else if (this.wrongChoices().contains(userAnswer)) {
+            } else {
                 System.out.println("THROW NEW EXCEPTION!!!!");
                 System.out.println("You got it wrong :(");
+                System.out.println();
                 System.out.println("The correct answer was " + this.getAnswer());
                 break;
             }
