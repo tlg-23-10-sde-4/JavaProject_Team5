@@ -1,126 +1,138 @@
 package io.trivia;
 
-import javax.management.openmbean.ArrayType;
-import java.lang.Thread;
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.apps.util.Prompter;
+import io.trivia.app.GameHost;
+import jdk.dynalink.beans.StaticClass;
+
+import java.io.IOException;
+import java.util.Scanner;
+
+import static io.trivia.app.GameHost.startGame;
 
 public class AsciiArt implements Runnable {
-	String ascii;
-	static String weAre = "🚀Big Tech Small Package is loading your game now 😎";
-
-	public static void simulateLoadingBar() {
-
-		int total = 100;
-		int barLength = 100;
-		int totalTime = 100;
-
-
-		for(int i = 1; i <= total; i++) {
-			try {
-				Thread.sleep(totalTime, total);
-			}
-			catch(InterruptedException e) {
-				e.printStackTrace();
-			}
-			// Update the loading bar
-			updateLoadingBar(i, total, barLength);
+	// AsciiArt is instantiated in GameHost
+	static String name = null;
+	static final int TOTAL = 100;              // total progress steps
+	static final int BAR_LENGTH = 95;           // length of the loading bar
+	static final int TOTAL_TIME = 1000;         // total time to load the bar
+	
+	public static void sweep(int lines) {
+		for(int i = 0; i < lines; i++) {
 			System.out.flush();
+			System.out.println("\n");
 		}
-		// Keep 100% displayed for user detail
-		try {
-			Thread.sleep(500);
-		}
-		catch(InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("\n");
+	} // old clear method
+	
+	public static void ansiFlush() {
+		System.out.print("\033[H\033[2J"); //ansiClear and flush escape sequence
+		System.out.flush();
 	}
-
-	public static void updateLoadingBar(int current, int total, int barLength) {
-		int progress = (int) ((double) current / total * barLength);
-
-		StringBuilder progressBar = new StringBuilder("[");
-		for(int i = 0; i < barLength; i++) {
-			if(i < progress) {
-				progressBar.append("=");
+	
+	public static void clearConsole() {
+		try {
+			final String os = System.getProperty("os.name");
+			if(os.contains("Windows")) {
+				Runtime.getRuntime().exec("cls"); //windows
 			}
 			else {
-				progressBar.append(" ");
+				Runtime.getRuntime().exec("clear"); // macos
 			}
 		}
-		progressBar.append("] ");
-		progressBar.append(current).append("%");
-
-		// Clear the previous line in the console
-		System.out.print(progressBar + "\r");
-	}
-
-	public static void loadTitle() throws InterruptedException {
-		System.out.println(weAre);
-
-		simulateLoadingBar();
-		updateLoadingBar(0, 100, 100);
-
-
-		System.out.println("  _______ _                           _   _           ______                    _   _                   _ ");
-		Thread.sleep(400);
-		System.out.println(" |__   __| |                         | \\ | |         |  ____|                  | | (_)                 | |");
-		Thread.sleep(375);
-		System.out.println("    | |  | |__  _ __ _____      __   |  \\| | ___     | |__  __  _____ ___ _ __ | |_ _  ___  _ __  ___  | |");
-		Thread.sleep(350);
-		System.out.println("    | |  | '_ \\| '__/ _ \\ \\ /\\ / /   | . ` |/ _ \\    |  __| \\ \\/ / __/ _ \\ '_ \\| __| |/ _ \\| '_ \\/ __| | |");
-		Thread.sleep(325);
-		System.out.println("    | |  | | | | | | (_) \\ V  V /    | |\\  | (_) |   | |____ >  < (_|  __/ |_) | |_| | (_) | | | \\__ \\ |_|");
-		Thread.sleep(300);
-		System.out.println("    |_|  |_| |_|_|  \\___/ \\_/\\_/     |_| \\_|\\___/    |______/_/\\_\\___\\___| .__/ \\__|_|\\___/|_| |_|___/ (_)");
-		Thread.sleep(275);
-		System.out.println("                                                                         | |                              ");
-		Thread.sleep(250);
-		System.out.println("                                                                         |_|                              ");
-
-	}
-
-
-	@Override
-	public void run() {
-
-	}
-
-
-	/*	public void kid1LoadTitle() throws InterruptedException {
-	 		// this is nested in loadTitle()
-		ArrayList <String>[] alphaList = new ArrayList[5]; // this means 4 different emojis each index can be repeated and reassigned
-		for(int i = 0; i < alphaList.length; i++) {
-			alphaList[i] = new ArrayList <>();
+		catch(final Exception e) {
+			e.printStackTrace();
 		}
-		//alphaList[0].add("");
-		//alphaList[1].add("");
-		//alphaList[2].add("");
-		//alphaList[1].add("");
-		//alphaList[2].add("");
-		//alphaList[2].add("");
-		//alphaList[3].add("");
-		//alphaList[3].add("");
-
-		int playback = 1;
-		for(int repeat = 0; repeat < playback; repeat++) {
-			for(ArrayList <String> list: alphaList) {
-				for(String str: list) {
-					Thread thread = new Thread(() -> {
-						try {
-							// Print the string and sleep for 200 milliseconds
-							System.out.println(str);
-							Thread.sleep(200);
-						}
-						catch(InterruptedException e) {
-							e.printStackTrace();
-						}
-					});
-					thread.start();
+	}
+	
+	
+	public static void ansiClear() throws IOException, InterruptedException {
+		new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+	}
+	
+	
+	public void bigTechBanner() throws InterruptedException {
+		String[] asciiHeading = {
+				" ░░░░░░  ░░  ░░░░░░     ░░░░░░░░ ░░░░░░░  ░░░░░░ ░░   ░░      ░░░░░░░ ░░░    ░░░  ░░░░░  ░░      ░░           ░░░░░░   ░░░░░   ░░░░░░ ░░   ░░  ░░░░░   ░░░░░░  ░░░░░░░ ░░░░░░░  ",
+				" ▒▒   ▒▒ ▒▒ ▒▒             ▒▒    ▒▒      ▒▒      ▒▒   ▒▒      ▒▒      ▒▒▒▒  ▒▒▒▒ ▒▒   ▒▒ ▒▒      ▒▒           ▒▒   ▒▒ ▒▒   ▒▒ ▒▒      ▒▒  ▒▒  ▒▒   ▒▒ ▒▒       ▒▒      ▒▒       ",
+				" ▒▒▒▒▒▒  ▒▒ ▒▒   ▒▒▒       ▒▒    ▒▒▒▒▒   ▒▒      ▒▒▒▒▒▒▒      ▒▒▒▒▒▒▒ ▒▒ ▒▒▒▒ ▒▒ ▒▒▒▒▒▒▒ ▒▒      ▒▒           ▒▒▒▒▒▒  ▒▒▒▒▒▒▒ ▒▒      ▒▒▒▒▒   ▒▒▒▒▒▒▒ ▒▒   ▒▒▒ ▒▒▒▒▒   ▒▒▒▒▒▒▒  ",
+				" ▓▓   ▓▓ ▓▓ ▓▓    ▓▓       ▓▓    ▓▓      ▓▓      ▓▓   ▓▓           ▓▓ ▓▓  ▓▓  ▓▓ ▓▓   ▓▓ ▓▓      ▓▓           ▓▓      ▓▓   ▓▓ ▓▓      ▓▓  ▓▓  ▓▓   ▓▓ ▓▓    ▓▓ ▓▓           ▓▓  ",
+				" ██████  ██  ██████        ██    ███████  ██████ ██   ██      ███████ ██      ██ ██   ██ ███████ ███████      ██      ██   ██  ██████ ██   ██ ██   ██  ██████  ███████ ███████  "
+		};
+		
+		for(String line: asciiHeading) {
+			System.out.println(line);
+			Thread.sleep(50); // SPEED OF DISPLAY
+			System.out.flush();
+		}
+		executeLoading();
+		
+	}
+	
+	public static void throwNoBanner() throws InterruptedException {
+		String[] asciiHeading2 = {
+				"▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░\n",
+				"░░░░░░░░ ░░   ░░ ░░░░░░   ░░░░░░  ░░     ░░     ░░░    ░░  ░░░░░░      ░░░░░░░ ░░   ░░  ░░░░░░ ░░░░░░░ ░░░░░░  ░░░░░░░░ ░░  ░░░░░░  ░░░    ░░ ░░░░░░░",
+				"   ▒▒    ▒▒   ▒▒ ▒▒   ▒▒ ▒▒    ▒▒ ▒▒     ▒▒     ▒▒▒▒   ▒▒ ▒▒    ▒▒     ▒▒       ▒▒ ▒▒  ▒▒      ▒▒      ▒▒   ▒▒    ▒▒    ▒▒ ▒▒    ▒▒ ▒▒▒▒   ▒▒ ▒▒     ",
+				"   ▒▒    ▒▒▒▒▒▒▒ ▒▒▒▒▒▒  ▒▒    ▒▒ ▒▒  ▒  ▒▒     ▒▒ ▒▒  ▒▒ ▒▒    ▒▒     ▒▒▒▒▒     ▒▒▒   ▒▒      ▒▒▒▒▒   ▒▒▒▒▒▒     ▒▒    ▒▒ ▒▒    ▒▒ ▒▒ ▒▒  ▒▒ ▒▒▒▒▒▒▒",
+				"   ▓▓    ▓▓   ▓▓ ▓▓   ▓▓ ▓▓    ▓▓ ▓▓ ▓▓▓ ▓▓     ▓▓  ▓▓ ▓▓ ▓▓    ▓▓     ▓▓       ▓▓ ▓▓  ▓▓      ▓▓      ▓▓         ▓▓    ▓▓ ▓▓    ▓▓ ▓▓  ▓▓ ▓▓      ▓▓",
+				"   ██    ██   ██ ██   ██  ██████   ███ ███      ██   ████  ██████      ███████ ██   ██  ██████ ███████ ██         ██    ██  ██████  ██   ████ ███████\n",
+				"░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
+		};
+		for(String line: asciiHeading2) {
+			System.out.println(line);
+			Thread.sleep(50); // SPEED OF DISPLAY
+			System.out.flush();
+		}
+	}
+	
+	public void executeLoading() throws InterruptedException {
+		System.out.println("\n");
+		for(int a = 1; a <= TOTAL; a++) {
+			// calculates progress in the loading bar
+			int progress = (int) ((double) a / TOTAL * BAR_LENGTH);
+			// custom loading bar design
+			StringBuilder visualizeLoading = new StringBuilder("💠 Loading your game 💠 ░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+			for(int b = 0; b < BAR_LENGTH; b++) {
+				if(b < progress) {
+					visualizeLoading.append("█");            // custom loading bar filler
+				}
+				else {
+					visualizeLoading.append(" ");
 				}
 			}
+			visualizeLoading.append("🤪  ❪").append(a).append("％❫      ");
+			
+			System.out.print(visualizeLoading + "\r");
+			System.out.flush();  // refresh the output in the loading bar
+			int sleepDuration = TOTAL_TIME / TOTAL; // Calculate sleep duration based on progress
+			Thread.sleep(sleepDuration);
 		}
-	}*/// maybe
-
+		Thread.sleep(500);  // Delay before the next display (custom)
+		System.out.flush();
+	}
+	
+	public static String promptName() {
+		Prompter input = new Prompter(new Scanner(System.in));
+		System.out.println("\n"); // line between and separating the throw no exceptions heading and name prompt
+		String askName = "Hey there, what's your name? ";
+		input.prompt(askName);
+		return askName = name;
+	}
+	
+	public void loadAscii() throws InterruptedException {
+		bigTechBanner();
+		sweep(20);
+		throwNoBanner();
+		sweep(9);
+		System.out.flush();
+		startGame();
+		
+		
+	}
+	
+	@Override
+	public void run() {}
+	
+	public String getName() {
+		return name;
+	}
 }
