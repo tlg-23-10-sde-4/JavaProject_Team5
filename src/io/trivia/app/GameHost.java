@@ -51,8 +51,8 @@ public class GameHost {
     }
 
     public void endGameMessage(Player player, Player player2) {
-        System.out.println(player.getName() + "score: " + player.getScore());
-        System.out.println(player2.getName() + "score: " + player2.getScore());
+        System.out.println(player.getName() + "'s score: " + player.getScore());
+        System.out.println(player2.getName() + "'s score: " + player2.getScore());
         if(player.getScore() == player2.getScore()) {
             System.out.println("Tie game!!!");
         } else if(player.getScore() > player2.getScore()) {
