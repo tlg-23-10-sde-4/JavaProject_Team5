@@ -3,6 +3,7 @@ package io.trivia;
 import com.apps.util.Prompter;
 import io.trivia.app.GameHost;
 import jdk.dynalink.beans.StaticClass;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -54,7 +55,7 @@ public class AsciiArt implements Runnable {
 		};
 		
 		for(String line: asciiHeading) {
-			System.out.println(line);
+			System.out.println(line.trim());
 			Thread.sleep(50); // SPEED OF DISPLAY
 			System.out.flush();
 		}
@@ -73,7 +74,7 @@ public class AsciiArt implements Runnable {
 				"░░░░░░░░░░░░░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓"
 		};
 		for(String line: asciiHeading2) {
-			System.out.println(line);
+			System.out.println(line.trim());
 			Thread.sleep(50); // SPEED OF DISPLAY
 			System.out.flush();
 		}
