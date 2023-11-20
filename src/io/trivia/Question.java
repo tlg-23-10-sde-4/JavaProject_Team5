@@ -62,20 +62,38 @@ public class Question {
     }
 
     public static void askQuestionOps(HashSet<String> askedQuestions, Player player, Player player2, String category) {
+        boolean player1Turn = true;
+        for (int i = 0; i < 10; i++) {
+            if (player1Turn == true) {
+                System.out.println(player.getName() + "'s " + "turn");
+                // asks question while making sure duplicate question isn't asked.
+                ArrayList<String> newQ;
+                String body;
+                do {
+                    newQ = QuestionService.newQuestion(Category.valueOf(category));
+                    body = newQ.get(0);
+                } while (askedQuestions.contains(body));
+                askedQuestions.add(body);
 
-        System.out.println(player.getName()+ "'s " + "turn");
-        // asks question while making sure duplicate question isn't asked.
-        ArrayList<String> newQ;
-        String body;
-        do {
-            newQ = QuestionService.newQuestion(Category.valueOf(category));
-            body = newQ.get(0);
-        } while (askedQuestions.contains(body));
-        askedQuestions.add(body);
+                Question question = new Question(newQ);
+                question.askQuestionDisplay(player);
+                player1Turn = false;
+            } else {
+                System.out.println(player2.getName() + "'s " + "turn");
+                // asks question while making sure duplicate question isn't asked.
+                ArrayList<String> newQ;
+                String body;
+                do {
+                    newQ = QuestionService.newQuestion(Category.valueOf(category));
+                    body = newQ.get(0);
+                } while (askedQuestions.contains(body));
+                askedQuestions.add(body);
 
-        Question question = new Question(newQ);
-        question.askQuestionDisplay(player);
-
+                Question question = new Question(newQ);
+                question.askQuestionDisplay(player2);
+                player1Turn = true;
+            }
+        }
     }
 
     public String getBody() {
