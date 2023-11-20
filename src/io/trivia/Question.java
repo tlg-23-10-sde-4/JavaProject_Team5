@@ -1,7 +1,6 @@
 package io.trivia;
 
 import com.apps.util.Prompter;
-
 import java.util.*;
 
 public class Question {
@@ -56,7 +55,7 @@ public class Question {
                 System.out.println("Invalid input. Please enter a number between 1 and 4.");
             }
         }
-            String selectedAnswer = (String) choices.get(userChoice - 1);
+            String selectedAnswer = choices.get(userChoice - 1);
             if (selectedAnswer.equals(this.getAnswer())) {
                 System.out.println();
                 System.out.println("You got it right!");
@@ -79,9 +78,8 @@ public class Question {
         boolean player1Turn = true;
         for (int i = 0; i < 10; i++) {
             if (player1Turn == true) {
-                askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
+                askedQuestions = nameAndQuestionDisplay(player, askedQuestions, category);
                 player1Turn = false;
-
             } else {
                 askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
                 player1Turn = true;
