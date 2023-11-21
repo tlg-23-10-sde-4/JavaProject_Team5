@@ -4,6 +4,8 @@ import com.apps.util.Prompter;
 
 import java.util.*;
 
+import static io.trivia.Category.*;
+
 public class Question {
 	private final String body;
 	private final String answer;
@@ -83,25 +85,25 @@ public class Question {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n┌────────────────────────────┐");
 		System.out.print("  CHOOSE A CATEGORY: ⓵ 𛰈 ⓻ ");
-		System.out.println("\n└────────────────────────────┘\n");
-		for(int i = 0; i < Category.values().length; i++) {
+		System.out.println("\n└────────────────────────────┘\n⎯  Enter your choice below  ⎯\n");
+		for(int i = 0; i < values().length; i++) {
 			
-			System.out.println("💡" + (i + 1) + "𛰨 " + Category.values()[i] + "\n");
+			System.out.println("💡" + (i + 1) + "𛰨 " + values()[i] + "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ ⭐️");
 		}
-		int choice = - 1;
-		while(choice < 1 || choice > Category.values().length) {
-			System.out.println("Enter your choice (1-" + Category.values().length + "):");
+		int choice = 0;
+		while(choice < 0 || choice <= values().length) {
+			System.out.print("ENTER HERE:" + values().length + " ");
 			try {
 				choice = Integer.parseInt(scanner.nextLine());
-				if(choice < 1 || choice > Category.values().length) {
-					System.out.println("Please enter a number between 1 and " + Category.values().length + ".");
+				if(choice < 1 || choice > values().length) {
+					System.out.println("Please enter a number between 1 and " + values().length + ".");
 				}
 			}
 			catch(NumberFormatException e) {
 				System.out.println("Invalid input. Please enter a number.");
 			}
 		}
-		return Category.values()[choice - 1].name();
+		return values()[choice - 1].name();
 	}
 	
 	public static void askQuestionOps(Set <String> askedQuestions, Player player, Player player2, String category) {
@@ -123,7 +125,7 @@ public class Question {
 		List <String> newQ;
 		String body;
 		do {
-			newQ = QuestionService.newQuestion(Category.valueOf(category));
+			newQ = QuestionService.newQuestion(valueOf(category));
 			body = newQ.get(0);
 		}
 		while(askedQuestions.contains(body));
