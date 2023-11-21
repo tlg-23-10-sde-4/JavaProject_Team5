@@ -1,10 +1,9 @@
 package io.trivia.client;
 
-import com.apps.util.Prompter;
+
 import io.trivia.AsciiArt;
 import io.trivia.app.GameHost;
 
-import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
