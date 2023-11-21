@@ -79,7 +79,7 @@ public class Question {
     }
 
     public static String getCategoryFromUserInput() {
-        Scanner scanner = new Scanner(System.in);
+        Prompter prompter = new Prompter(new Scanner(System.in));
         System.out.println("\n┌────────────────────────────┐");
         System.out.print("  CHOOSE A CATEGORY: ⓵ 𛰈 ⓻ ");
         System.out.println("\n└────────────────────────────┘\n⎯  Enter your choice below  ⎯\n");
@@ -89,14 +89,16 @@ public class Question {
         }
         int choice = 0;
         while (true) {
-            System.out.print("ENTER HERE: ");
-
-            choice = Integer.parseInt(scanner.nextLine());
-            if (choice < 1 || choice > values().length) {
-                System.out.println("Please enter a number between 1 and " + values().length + ".");
-            } else {
-                Console.clear();
-                break;
+            try {
+                choice = Integer.valueOf(prompter.prompt("ENTER HERE: "));
+                if (choice < 1 || choice > values().length) {
+                    System.out.println("Please enter a number between 1 and " + values().length + ".");
+                } else {
+                    Console.clear();
+                    break;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number between 1 and 7.");
             }
         }
         return values()[choice - 1].name();
@@ -113,8 +115,7 @@ public class Question {
                 askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
                 try {
                     Thread.sleep(3000);
-                }
-                catch(InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 Console.clear();
