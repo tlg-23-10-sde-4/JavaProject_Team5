@@ -2,9 +2,11 @@ package io.trivia.app;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import io.trivia.AsciiArt;
 import io.trivia.Player;
 import io.trivia.Question;
 
+import java.io.BufferedReader;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
@@ -36,6 +38,7 @@ public class GameHost {
 	}
 	
 	public String namePromptPlayer1() {
+		Console.clear();
 		Prompter prompter = new Prompter(new Scanner(System.in));
 		Console.blankLines(1); //~oshay added this
 		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ① Enter your name: "); //~oshay added this
@@ -46,7 +49,7 @@ public class GameHost {
 		Console.blankLines(1); //~oshay added this
 		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ② Enter your name: "); //~oshay added this
 	}
-
+	
 	public void endGameMessage(Player player, Player player2) {
 		System.out.println(player.getName() + "'s score: " + player.getScore());
 		System.out.println(player2.getName() + "'s score: " + player2.getScore());
