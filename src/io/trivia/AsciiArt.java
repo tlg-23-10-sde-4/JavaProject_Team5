@@ -49,8 +49,6 @@ public class AsciiArt implements Runnable {
 	
 	
 	public void run() {
-		
-		
 		BufferedReader reader;
 		{
 			try {
