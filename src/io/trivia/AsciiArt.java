@@ -68,7 +68,9 @@ public class AsciiArt implements Runnable {
 					
 				}
 				reader01.close();
-				
+				while((line02 = reader02.readLine()) != null) {
+					System.out.println(line02);
+				}
 			}
 			catch(IOException e) {
 				e.printStackTrace();
