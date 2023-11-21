@@ -9,18 +9,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="APP.UTILS_1.1.jar" level="project" />
-    <orderEntry type="library" name="JSON__jar.lib" level="project" />
-    <orderEntry type="library" scope="TEST" name="JUNIT__jar.lib" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/annotations-24.0.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" exported="" name="APP.UTILS_1.1.jar" level="project" />
+    <orderEntry type="library" exported="" name="JSON__jar.lib" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="JUNIT__jar.lib" level="project" />
   </component>
   <component name="SonarLintModuleSettings">
     <option name="uniqueId" value="659cf647-aea4-449c-a4da-b0207370342a" />
