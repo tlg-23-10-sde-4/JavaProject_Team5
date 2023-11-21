@@ -7,12 +7,13 @@ import io.trivia.app.GameHost;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
-        AsciiArt ascii = new AsciiArt();
-        ascii.loadAscii();
-        GameHost a = new GameHost();
-        a.startGame();
-    }
+	public static void main(String[] args) throws InterruptedException {
+		AsciiArt ascii = new AsciiArt();
+		GameHost a = new GameHost();
+		ascii.loadingBar();
+		ascii.run();
+		a.startGame();
+	}
 }
 /*
 todo: console.clear();
