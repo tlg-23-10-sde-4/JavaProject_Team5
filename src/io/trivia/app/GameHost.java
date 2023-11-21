@@ -16,7 +16,7 @@ public class GameHost {
         while (runAgain.equals("y")) {
             String name = namePromptPlayer1();
             String name2 = namePromptPlayer2();
-            String category = categoryPrompt();
+            String category = Question.getCategoryFromUserInput();
             Player player = new Player(name);
             Player player2 = new Player(name2);
             playGame(category, player, player2);
@@ -40,21 +40,21 @@ public class GameHost {
         return prompter.prompt("Player 2 please enter your name: ");
     }
 
-    public String categoryPrompt() {
-        Prompter prompter = new Prompter(new Scanner(System.in));
-        String category;
-        while (true) {
-            for (Category cat : Category.values()) {
-                System.out.println(cat);
-            }
-            category = prompter.prompt("Please choose a category: ");
-            category = category.trim().toUpperCase(Locale.ROOT);
-            if (EnumUtils.isValidEnum(Category.class, category)) {
-                System.out.println("To play, type in your answer.");
-                return category;
-            }
-        }
-    }
+//    public String categoryPrompt() {
+//        Prompter prompter = new Prompter(new Scanner(System.in));
+//        String category;
+//        while (true) {
+//            for (Category cat : Category.values()) {
+//                System.out.println(cat);
+//            }
+//            category = prompter.prompt("Please choose a category: ");
+//            category = category.trim().toUpperCase(Locale.ROOT);
+//            if (EnumUtils.isValidEnum(Category.class, category)) {
+//                System.out.println("To play, type in your answer.");
+//                return category;
+//            }
+//        }
+//    }
 
     public void endGameMessage(Player player, Player player2) {
         System.out.println(player.getName() + "'s score: " + player.getScore());

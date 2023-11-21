@@ -54,7 +54,7 @@ public class AsciiArt implements Runnable {
 		final String A01 = "A01.txt";
 		final String A02 = "A02.txt";
 		final String A03 = "A03.txt";
-		final String FILE_PATH = "/Users/oshay/StudentWork/MiniProject/JavaProject_Team5/";
+		final String FILE_PATH = "/Users/andytran/StudentWork/JavaProject_Team5/";
 		BufferedReader reader;
 		{
 			try {
@@ -68,11 +68,11 @@ public class AsciiArt implements Runnable {
 					
 				}
 				reader01.close();
-				
 			}
 			catch(IOException e) {
 				e.printStackTrace();
 			}
+
 		}
 	}
 }

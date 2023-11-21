@@ -1,5 +1,6 @@
 package io.trivia;
 
+import com.apps.util.Console;
 import com.apps.util.Prompter;
 import java.util.*;
 
@@ -73,6 +74,26 @@ public class Question {
                 break;
             }
         }
+    }
+
+    public static String getCategoryFromUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        for (int i = 0; i < Category.values().length; i++) {
+            System.out.println((i + 1) + ". " + Category.values()[i]);
+        }
+        int choice = -1;
+        while (choice < 1 || choice > Category.values().length) {
+            System.out.println("Enter your choice (1-" + Category.values().length + "):");
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+                if (choice < 1 || choice > Category.values().length) {
+                    System.out.println("Please enter a number between 1 and " + Category.values().length + ".");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+        return Category.values()[choice - 1].name();
     }
 
     public static void askQuestionOps(Set<String> askedQuestions, Player player, Player player2, String category) {
