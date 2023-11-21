@@ -69,7 +69,7 @@ public class Question {
                 break;
             } else {
                 System.out.println();
-                System.out.println("THROW NO EXCEPTION!!!!");
+                System.out.println("THROW NEW EXCEPTION!!!!");
                 System.out.println();
                 System.out.println("You got it wrong :(");
                 System.out.println("The correct answer was " + this.getAnswer());
