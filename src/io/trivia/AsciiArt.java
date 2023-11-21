@@ -75,12 +75,4 @@ public class AsciiArt implements Runnable {
 			}
 		}
 	}
-}
-
-
-
-
-
-
-
 
