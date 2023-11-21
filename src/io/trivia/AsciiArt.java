@@ -1,5 +1,7 @@
 package io.trivia;
 
+import com.apps.util.Console;
+
 import java.io.*;
 
 
@@ -49,15 +51,10 @@ public class AsciiArt implements Runnable {
 	public void run() {
 		final String A01 = "A01.txt";
 		final String A02 = "A02.txt";
-
 		
 		
 		final String FILE_PATH = "/Users/oshay/StudentWork/MiniProject/JavaProject_Team5/";
 		
-
-		final String A03 = "A03.txt";
-		final String FILE_PATH = "/Users/andytran/StudentWork/JavaProject_Team5/";
-
 		BufferedReader reader;
 		{
 			try {
@@ -71,17 +68,23 @@ public class AsciiArt implements Runnable {
 					
 				}
 				reader01.close();
-
-				
-				while((line02 = reader02.readLine()) != null) {
-					System.out.println(line02);
+				Console.clear();
+				try {
+					
+					while((line02 = reader02.readLine()) != null) {
+						System.out.println(line02);
+					}
+					
 				}
-
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+				
+				
 			}
 			catch(IOException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
 }
