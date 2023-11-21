@@ -49,17 +49,15 @@ public class AsciiArt implements Runnable {
 	
 	
 	public void run() {
-		final String A01 = "A01.txt";
-		final String A02 = "A02.txt";
 		
-		
-		final String FILE_PATH = "/Users/andytran/StudentWork/JavaProject_Team5";
 		
 		BufferedReader reader;
 		{
 			try {
-				BufferedReader reader01 = new BufferedReader(new FileReader(FILE_PATH + A01));
-				BufferedReader reader02 = new BufferedReader(new FileReader(FILE_PATH + A02));
+				final String A01 = "A01.txt";
+				final String A02 = "A02.txt";
+				BufferedReader reader01 = new BufferedReader(new FileReader(A01));
+				BufferedReader reader02 = new BufferedReader(new FileReader(A02));
 				String line01;
 				String line02;
 				
@@ -69,17 +67,10 @@ public class AsciiArt implements Runnable {
 				}
 				reader01.close();
 				Console.clear();
-				try {
-					
-					while((line02 = reader02.readLine()) != null) {
-						System.out.println(line02);
-					}
-					
-				}
-				catch(IOException e) {
-					e.printStackTrace();
-				}
 				
+				while((line02 = reader02.readLine()) != null) {
+					System.out.println(line02);
+				}
 				
 			}
 			catch(IOException e) {
