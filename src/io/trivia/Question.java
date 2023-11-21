@@ -90,14 +90,16 @@ public class Question {
 		int choice = 0;
 		while(true) {
 			System.out.print("ENTER HERE: ");
-			
-			choice = Integer.parseInt(scanner.nextLine());
-			if(choice < 1 || choice > values().length) {
-				System.out.println("Please enter a number between 1 and " + values().length + ".");
-			}
-			else {
-				Console.clear();
-				break;
+			try {
+				choice = Integer.parseInt(scanner.nextLine());
+				if (choice < 1 || choice > values().length) {
+					System.out.println("Please enter a number between 1 and " + values().length + ".");
+				} else {
+					Console.clear();
+					break;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("Invalid input. Please enter a number between 1 and 7.");
 			}
 		}
 		return values()[choice - 1].name();
