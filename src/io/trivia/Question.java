@@ -81,11 +81,11 @@ public class Question {
     public static String getCategoryFromUserInput() {
         Prompter prompter = new Prompter(new Scanner(System.in));
         System.out.println("\n┌────────────────────────────┐");
-        System.out.print("  CHOOSE A CATEGORY: ⓵ 𛰈 ⓻ ");
+        System.out.print("  CHOOSE A CATEGORY: 1 𛰈 7 ");
         System.out.println("\n└────────────────────────────┘\n⎯  Enter your choice below  ⎯\n");
         for (int i = 0; i < values().length; i++) {
 
-            System.out.println("💡" + (i + 1) + "𛰨 " + values()[i] + "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ ⭐️");
+            System.out.println("" + (i + 1) + "𛰨 " + values()[i] + "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯ ⭐");
         }
         int choice = 0;
         while (true) {
