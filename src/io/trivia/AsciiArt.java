@@ -1,17 +1,14 @@
 package io.trivia;
 
 import com.apps.util.Console;
-
 import java.io.*;
-
 
 public class AsciiArt implements Runnable {
 	
 	static final int TOTAL = 100;              // total progress steps
 	static final int BAR_LENGTH = 95;           // length of the loading bar
 	static final int TOTAL_TIME = 1000;         // total time to load the bar
-	
-	
+
 	public void loadingBar() {
 		for(int a = 1; a <= TOTAL; a++) {
 			// calculates progress in the loading bar
@@ -46,8 +43,7 @@ public class AsciiArt implements Runnable {
 		}
 		System.out.flush();
 	}
-	
-	
+
 	public void run() {
 		BufferedReader reader;
 		{
@@ -77,11 +73,3 @@ public class AsciiArt implements Runnable {
 		}
 	}
 }
-
-
-
-
-
-
-
-

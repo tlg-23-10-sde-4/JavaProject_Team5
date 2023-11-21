@@ -5,17 +5,14 @@ import com.apps.util.Prompter;
 import io.trivia.AsciiArt;
 import io.trivia.Player;
 import io.trivia.Question;
-
 import java.io.BufferedReader;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 
-
 public class GameHost {
 	Console console;
-	
 	public void startGame() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
 		String runAgain = "Y";

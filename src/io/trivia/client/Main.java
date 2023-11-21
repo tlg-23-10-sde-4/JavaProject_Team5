@@ -1,9 +1,7 @@
 package io.trivia.client;
 
-
 import io.trivia.AsciiArt;
 import io.trivia.app.GameHost;
-
 
 public class Main {
 	public static void main(String[] args) {
@@ -12,6 +10,5 @@ public class Main {
 		ascii.loadingBar();
 		ascii.run();
 		a.startGame();
-		
 	}
 }

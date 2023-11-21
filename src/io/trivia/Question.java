@@ -2,9 +2,7 @@ package io.trivia;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
-
 import java.util.*;
-
 import static io.trivia.Category.*;
 
 public class Question {
@@ -83,7 +81,7 @@ public class Question {
 	public static String getCategoryFromUserInput() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n┌────────────────────────────┐");
-		System.out.print("  CHOOSE A CATEGORY: ⓵ 𛰈 ⓻ ");
+		System.out.print("  CHOOSE A CATEGORY: ");
 		System.out.println("\n└────────────────────────────┘\n⎯  Enter your choice below  ⎯\n");
 		for(int i = 0; i < values().length; i++) {
 			

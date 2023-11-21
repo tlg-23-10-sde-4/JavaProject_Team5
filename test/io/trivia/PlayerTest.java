@@ -28,4 +28,3 @@ public class PlayerTest {
     public void testToString() {
     }
 }
-
