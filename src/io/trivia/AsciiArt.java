@@ -17,7 +17,7 @@ public class AsciiArt implements Runnable {
 			// calculates progress in the loading bar
 			int progress = (int) ((double) a / TOTAL * BAR_LENGTH);
 			// custom loading bar design
-			StringBuilder visualizeLoading = new StringBuilder("💠 Loading your game 💠 ░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
+			StringBuilder visualizeLoading = new StringBuilder("+ Loading your game + ░░░░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓");
 			for(int b = 0; b < BAR_LENGTH; b++) {
 				if(b < progress) {
 					visualizeLoading.append("█");            // custom loading bar filler
@@ -26,7 +26,7 @@ public class AsciiArt implements Runnable {
 					visualizeLoading.append(" ");
 				}
 			}
-			visualizeLoading.append(" 🤪 ❪").append(a).append("％❫      ");
+			visualizeLoading.append(" + ❪").append(a).append("％❫      ");
 			
 			System.out.print(visualizeLoading + "\r");
 			System.out.flush();  // refresh the output in the loading bar
