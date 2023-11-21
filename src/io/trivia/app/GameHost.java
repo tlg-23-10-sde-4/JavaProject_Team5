@@ -40,13 +40,13 @@ public class GameHost {
 	public String namePromptPlayer1() {
 		Console.clear();
 		Prompter prompter = new Prompter(new Scanner(System.in));
-		Console.blankLines(1); //~oshay added this
+		Console.blankLines(1);
 		return prompter.prompt("️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓  PLAYER 1 Enter your name: ");
 	}
 	
 	public String namePromptPlayer2() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
-		Console.blankLines(1); //~oshay added this
+		Console.blankLines(1);
 		return prompter.prompt("️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓  PLAYER 2 Enter your name: ");
 	}
 	
