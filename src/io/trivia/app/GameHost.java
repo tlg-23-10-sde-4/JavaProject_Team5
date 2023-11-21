@@ -6,6 +6,7 @@ import io.trivia.Player;
 import io.trivia.Question;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
 //~oshay collapsed imports
@@ -24,7 +25,8 @@ public class GameHost {
 			Player player2 = new Player(name2);
 			playGame(category, player, player2);
 			endGameMessage(player, player2);
-			runAgain = prompter.prompt("Press 'y' to play again, any other character to exit. ");
+			String runAgainInput = prompter.prompt("Press 'Y' to play again, any other character to exit. ");
+			runAgain = runAgainInput.toUpperCase(Locale.ROOT);
 		}
 	}
 	
@@ -44,8 +46,7 @@ public class GameHost {
 		Console.blankLines(1); //~oshay added this
 		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ② Enter your name: "); //~oshay added this
 	}
-	
-	
+
 	public void endGameMessage(Player player, Player player2) {
 		System.out.println(player.getName() + "'s score: " + player.getScore());
 		System.out.println(player2.getName() + "'s score: " + player2.getScore());
@@ -59,20 +60,4 @@ public class GameHost {
 			System.out.println(player2.getName() + " 🎊🥇Is the winner🥇🎉");
 		}
 	}
-	/*
-//    public String categoryPrompt() {
-//        Prompter prompter = new Prompter(new Scanner(System.in));
-//        String category;
-//        while (true) {
-//            for (Category cat : Category.values()) {
-//                System.out.println(cat);
-//            }
-//            category = prompter.prompt("Please choose a category: ");
-//            category = category.trim().toUpperCase(Locale.ROOT);
-//            if (EnumUtils.isValidEnum(Category.class, category)) {
-//                System.out.println("To play, type in your answer.");
-//                return category;
-//            }
-//        }
-//    }*/// commented out idk why ~oshay
 }

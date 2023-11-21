@@ -3,22 +3,20 @@ package io.trivia;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.*;
 
 import static org.junit.Assert.*;
 
 public class QuestionTest {
     @Before
     public void init() {
-        ArrayList<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
+        List<String> tester = new ArrayList<String>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
         Question question = new Question(tester);
     }
 
     @Test
     public void allChoicesRandom_shouldReturnAnswerChoicesInDifferentOrder_whenCalled() {
-        ArrayList<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
+        List<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
         Question question = new Question(tester);
         System.out.println(question.allChoicesRandom());
 
@@ -26,9 +24,8 @@ public class QuestionTest {
 
     @Test
     public void wrongChoices_shouldReturnListOfLenThree_whenCalled() {
-        ArrayList<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
+        List<String> tester = new ArrayList<>(Arrays.asList("body", "answer", "wrongchoice1", "wrongchoice2", "wrongchoice3"));
         Question question = new Question(tester);
         assertEquals(question.wrongChoices().size(), 3.0, .001);
     }
-
 }

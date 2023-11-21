@@ -1,5 +1,6 @@
 package io.trivia;
 
+import com.apps.util.Console;
 import com.apps.util.Prompter;
 
 import java.util.*;
@@ -68,11 +69,10 @@ public class Question {
                 break;
             } else {
                 System.out.println();
-                System.out.println("You got it wrong :(");
-                System.out.println("The correct answer was " + this.getAnswer());
-                System.out.println();
                 System.out.println("THROW NEW EXCEPTION!!!!");
                 System.out.println();
+                System.out.println("You got it wrong :(");
+                System.out.println("The correct answer was " + this.getAnswer());
                 break;
             }
         }
@@ -95,6 +95,7 @@ public class Question {
             if (choice < 1 || choice > values().length) {
                 System.out.println("Please enter a number between 1 and " + values().length + ".");
             } else {
+                Console.clear();
                 break;
             }
         }
@@ -106,9 +107,17 @@ public class Question {
         for (int i = 0; i < 10; i++) {
             if (player1Turn == true) {
                 askedQuestions = nameAndQuestionDisplay(player, askedQuestions, category);
+                System.out.println("________________________________________________________________________");
                 player1Turn = false;
             } else {
                 askedQuestions = nameAndQuestionDisplay(player2, askedQuestions, category);
+                try {
+                    Thread.sleep(3000);
+                }
+                catch(InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Console.clear();
                 player1Turn = true;
             }
         }

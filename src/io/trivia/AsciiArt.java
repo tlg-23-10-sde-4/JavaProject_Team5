@@ -53,7 +53,7 @@ public class AsciiArt implements Runnable {
 		final String A02 = "A02.txt";
 		
 		
-		final String FILE_PATH = "/Users/andytran/StudentWork/JavaProject_Team5";
+		final String FILE_PATH = "/Users/andytran/StudentWork/JavaProject_Team5/";
 		
 		BufferedReader reader;
 		{
