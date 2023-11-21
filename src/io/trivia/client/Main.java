@@ -15,7 +15,3 @@ public class Main {
 		
 	}
 }
-/*
-todo: console.clear();
-maybe: number categories and have user type in number for category
- */

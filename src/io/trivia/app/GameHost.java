@@ -2,17 +2,19 @@ package io.trivia.app;
 
 import com.apps.util.Console;
 import com.apps.util.Prompter;
+import io.trivia.AsciiArt;
 import io.trivia.Player;
 import io.trivia.Question;
 
+import java.io.BufferedReader;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Set;
-//~oshay collapsed imports
+
 
 public class GameHost {
-	Console console; //~oshay added this
+	Console console;
 	
 	public void startGame() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
@@ -36,17 +38,18 @@ public class GameHost {
 	}
 	
 	public String namePromptPlayer1() {
+		Console.clear();
 		Prompter prompter = new Prompter(new Scanner(System.in));
-		Console.blankLines(1); //~oshay added this
-		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ① Enter your name: "); //~oshay added this
+		Console.blankLines(1);
+		return prompter.prompt("️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓  PLAYER 1 Enter your name: ");
 	}
 	
 	public String namePromptPlayer2() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
-		Console.blankLines(1); //~oshay added this
-		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ② Enter your name: "); //~oshay added this
+		Console.blankLines(1);
+		return prompter.prompt("️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓  PLAYER 2 Enter your name: ");
 	}
-
+	
 	public void endGameMessage(Player player, Player player2) {
 		System.out.println(player.getName() + "'s score: " + player.getScore());
 		System.out.println(player2.getName() + "'s score: " + player2.getScore());
@@ -54,10 +57,10 @@ public class GameHost {
 			System.out.println("Tie game!!!");
 		}
 		else if(player.getScore() > player2.getScore()) {
-			System.out.println(player.getName() + " 🎊🥇Is the winner🥇🎉");
+			System.out.println(player.getName() + " Is the winner!");
 		}
 		else {
-			System.out.println(player2.getName() + " 🎊🥇Is the winner🥇🎉");
+			System.out.println(player2.getName() + " Is the winner!");
 		}
 	}
 }
