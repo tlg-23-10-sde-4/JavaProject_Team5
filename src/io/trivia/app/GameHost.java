@@ -42,7 +42,7 @@ public class GameHost {
 	public String namePromptPlayer2() {
 		Prompter prompter = new Prompter(new Scanner(System.in));
 		Console.blankLines(1); //~oshay added this
-		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ②  Enter your name: "); //~oshay added this
+		return prompter.prompt("⭕️ ░░░░░░░░▒▒▒▒▒▒▒▒▒▒▒▓▓▓▓▓▓▓▓▓▓ 😎 PLAYER ② Enter your name: "); //~oshay added this
 	}
 	
 	

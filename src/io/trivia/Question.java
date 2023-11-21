@@ -83,10 +83,10 @@ public class Question {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("\n┌────────────────────────────┐");
 		System.out.print("  CHOOSE A CATEGORY: ⓵ 𛰈 ⓻ ");
-		System.out.println("\n└────────────────────────────┘");
+		System.out.println("\n└────────────────────────────┘\n");
 		for(int i = 0; i < Category.values().length; i++) {
 			
-			System.out.println((i + 1) + ". " + Category.values()[i]);
+			System.out.println("💡" + (i + 1) + "𛰨 " + Category.values()[i] + "\n");
 		}
 		int choice = - 1;
 		while(choice < 1 || choice > Category.values().length) {
