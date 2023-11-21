@@ -5,7 +5,7 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.List;
 
-public class GameQuestionTest {
+public class QuestionServiceTest {
     @Test
     public void getJsonShould_returnArrayList_whenCalled() {
         HashSet<String> b;

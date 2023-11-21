@@ -34,14 +34,10 @@ public class Player {
         this.name = name;
     }
 
-    // Do we need this?
     public int getScore() {
         return score;
     }
 
-    // Are we making a derived property method?
-
-    // Initial toString if needed
     @Override
     public String toString() {
         return "Player: " + name + ", Score= " + score;
